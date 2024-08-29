@@ -1,0 +1,66 @@
+@import "./reset.css";
+
+/* FONTS */
+
+@font-face {
+    font-family: "Tourney";
+    src:
+        local("Tourney"),
+        url("../fonts/Tourney/Tourney-Medium.ttf") format("truetype");
+        font-weight: 500;
+        font-style: normal;
+}
+
+/* COLORS */
+
+:root {
+    --light-primary: rgba(255, 255, 255, 1.0);
+    --light-secondary: rgba(245, 245, 245, 1.0);
+    --light-tertiary: rgba(235, 235, 235, 1.0);
+
+    --dark-primary: rgba(0, 12, 30, 1.0);
+    --dark-secondary: rgba(20, 31, 48, 1.0);
+    --dark-tertiary: rgba(41, 51, 66, 1.0);
+
+    --brand-red-primary: rgba(225, 39, 38, 1.0);
+    --brand-red-secondary: rgba(251, 229, 229, 1.0);
+
+    --brand-blue-primary: rgba(18, 71, 151, 1.0);
+    --brand-blue-secondary: rgba(227, 233, 243, 1.0);
+}
+
+/* STYLES */
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--dark-primary);
+    background-color: var(--light-secondary);
+}
+
+section {
+    margin: 3.2rem 0;
+}
+
+section h1 {
+    margin: 0 1.6rem 1.6rem 1.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+svg {
+    width: auto;
+    height: 1.2rem;
+    fill: inherit;
+    stroke: inherit;
+}
+
+/* FONT STYLES */
+
