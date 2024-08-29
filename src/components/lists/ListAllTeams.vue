@@ -1,6 +1,10 @@
 <template>
     <ul class="list-all-teams">
-        <ItemListAllTeams team-name="Sc Freiburg" is-favorite />
+        <ItemListAllTeams 
+        v-for="team in storeTeams.teams" 
+        :key="team.name" 
+        :team-name="team.name" 
+        :is-favorite="getFavoriteTeam(team.name)" />
     </ul>
 </template>
 
@@ -36,5 +40,12 @@
 
 <script lang="ts" setup>
 import ItemListAllTeams from "@/components/items/ItemListAllTeams.vue"
+import useStoreTeams from "@/stores/useStoreTeams"
+
+const storeTeams = useStoreTeams()
+
+function getFavoriteTeam(teamName: string): boolean {
+    return teamName.toLowerCase() === storeTeams.favoriteTeam.toLowerCase() ? true : false
+}
 
 </script>

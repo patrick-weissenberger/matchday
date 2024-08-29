@@ -10,7 +10,7 @@
             </section>
             <section id="my-next-match">
                 <h1>Mein nächstes Spiel</h1>
-                <ListNextMatches />
+                <ListPastMatches />
             </section>
         </ContainerIn>
     </ContainerOut>
@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
 import CardLiveMatch from "@/components/cards/CardLiveMatch.vue"
-import ListNextMatches from "@/components/lists/ListNextMatches.vue"
 import ListNextMatch from "@/components/lists/ListNextMatch.vue"
+import ListPastMatches from "@/components/lists/ListPastMatches.vue"
 
 </script>

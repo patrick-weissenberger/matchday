@@ -1,8 +1,8 @@
 <template>
-    <li class="item-list-all-teams">
+    <li class="item-list-all-teams" :class="{ 'is-favorite': props.isFavorite }" @click="storeTeams.toggleFavoriteTeam(props.teamName)">
         <div class="item-content">
             <p class="team-name">{{ props.teamName }}</p>
-            <button class="team-favorite" :class="{ 'is-favorite': props.isFavorite }">
+            <button class="team-favorite">
                 <svg
                     width="24"
                     height="24"
@@ -34,6 +34,10 @@
         border-radius: 0.8rem;
     }
 
+    li.item-list-all-teams:hover {
+        cursor: pointer;
+    }
+
     li.item-list-all-teams .item-content {
         display: flex;
         justify-content: space-between;
@@ -58,12 +62,14 @@
 
     /* conditional styles */
 
-    button.team-favorite.is-favorite {
-        background-color: var(--brand-red-secondary);
+    li.item-list-all-teams.is-favorite {
+        color: var(--brand-red-secondary);
+        background-color: var(--brand-red-primary);
     }
 
-    button.team-favorite.is-favorite svg {
-        stroke: var(--brand-red-primary);
+    li.item-list-all-teams.is-favorite svg {
+        stroke: var(--brand-red-secondary);
+        stroke-width: 0.2rem;
     }
 
 }
@@ -83,6 +89,7 @@
 
 
 <script lang="ts" setup>
+import useStoreTeams from "@/stores/useStoreTeams"
 
 const props = defineProps({
     teamName: {
@@ -94,5 +101,7 @@ const props = defineProps({
         required: true
     }
 })
+
+const storeTeams = useStoreTeams()
 
 </script>

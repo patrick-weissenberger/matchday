@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.2",
+    "@vueuse/core": "^11.0.3",
     "pinia": "^2.1.7",
     "radix-vue": "^1.9.5",
     "vue": "^3.4.29",
