@@ -2,7 +2,7 @@
     <div class="card-live-match">
         <div class="card-content">
             <div class="card-header">
-                <div class="match-status">
+                <div class="match-status" :class="{ blink: isLive }">
                     <p>
                         <span>
                             <svg
@@ -168,6 +168,18 @@
         transition: transform 660ms cubic-bezier(0.65, 0, 0.35, 1);
     }
 
+    /* conditional classes */
+
+    .blink {
+        animation: blinker 1.5s linear infinite;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 20%;
+        }
+    }
+
 }
 
 @media(min-width: 768px) {
@@ -192,6 +204,10 @@ import { formatMatchTimeToHMS } from "@/utils/timeUtils"
 import type { HMSasString } from "@/utils/timeUtils"
 
 const storeMatches = useStoreMatches()
+
+const isLive = computed((): Boolean => {
+    return storeMatches.currentMatch.is_live ? true : false
+})
 
 // PROGRESS: PER HALFTIME
 

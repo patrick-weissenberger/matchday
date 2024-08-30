@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router"
+import isAuthenticated from "@/router/middleware/isAuthenticated"
 
 
 
@@ -21,9 +22,34 @@ const router = createRouter({
             path: "/teams",
             name: "teams_index",
             component: () => import("@/views/teams/Index.vue")
+        },
+        {
+            path: "/auth",
+            name: "auth_index",
+            redirect: { name: 'auth_login_index' },
+        },
+        {
+            path: "/auth/register",
+            redirect: { name: 'auth_login_index' }
+        },
+        {
+            path: "/auth/login",
+            name: "auth_login_index",
+            component: () => import("@/views/auth/Login.vue")
+        },
+        {
+            path: "/admin",
+            name: "admin_index",
+            component: () => import("@/views/admin/Index.vue")
         }
     ]
 })
+
+
+
+
+
+router.beforeEach(isAuthenticated)
 
 
 
