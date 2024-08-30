@@ -13,12 +13,11 @@
             </div>
         </div>
         <div class="status">
-            <button 
-            class="start-match" 
-            @click="toggleCountdown">
+            <button v-if="!matchIsFinished" class="start-match" @click="toggleCountdown">
                 <p v-if="matchIsPaused">Spiel fortsetzen</p>
                 <p v-else>Spiel pausieren</p>
             </button>
+            <button v-if="matchIsFinished" @click="loadNextMatch">Nächstes Spiel laden</button>
         </div>
     </section>
 </template>
@@ -131,7 +130,7 @@
 
 <script lang="ts" setup>
 import useStoreMatches from "@/stores/useStoreMatches"
-import { computed, watch } from "vue"
+import { computed, ref, type Ref } from "vue"
 import { useStorage } from "@vueuse/core"
 import supabase from "@/databases/supabase/supabase"
 
@@ -165,11 +164,20 @@ async function increaseAwayTeamScore() {
 
 // STATUS
 
-let halfTimeLenght: number = (storeMatches.currentMatch.match_duration / 2)
+let halfTimeLength: number = (storeMatches.currentMatch.match_duration / 2)
 
     // COUNTDOWN
-
+    
     const matchIsPaused = useStorage("matchIsPaused", false)
+
+    const matchIsFinished = computed((): boolean => {
+        if(storeMatches.currentMatch.elapsed_time === storeMatches.currentMatch.match_duration) {
+            stopCountdown()
+            return true
+        } else {
+            return false
+        }
+    })
 
     let countdown: NodeJS.Timeout
 
@@ -192,7 +200,7 @@ let halfTimeLenght: number = (storeMatches.currentMatch.match_duration / 2)
     }
 
     async function toggleCountdown() {
-        if(matchIsPaused.value == true) {
+        if(matchIsPaused.value === true) {
             matchIsPaused.value = false
             await supabase.from("matches").update({ is_live: true }).eq("id", storeMatches.currentMatch.id)
             startCountdown()
@@ -203,26 +211,17 @@ let halfTimeLenght: number = (storeMatches.currentMatch.match_duration / 2)
         }
     }
 
+async function loadNextMatch() {
+    // setting 'is_live' to false => not necessary, but doesn't hurt :)
+    await supabase.from("matches").update({ is_live: false, is_finished: true }).eq("id", storeMatches.currentMatch.id)
+}
+    
 
 
 
 
 
-
-
-
-
-
-
-const matchIsFinished = computed(() => {
-    if(storeMatches.currentMatch.match_duration === 0) {}
-})
-
-
-
-// const secondHalfTimeIsActive = computed((): boolean => {
-//     return !firstHalfTimeIsActive && (storeMatches.currentMatch.elapsed_time < storeMatches.currentMatch.match_duration) ? true : false
-// })
+    
 
 
 
