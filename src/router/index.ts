@@ -46,6 +46,10 @@ const router = createRouter({
             path: "/admin",
             name: "admin_index",
             component: () => import("@/views/admin/Index.vue")
+        },
+        {
+            path: "*",
+            redirect: { name: "index" }
         }
     ]
 })
