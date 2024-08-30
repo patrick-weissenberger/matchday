@@ -1,4 +1,5 @@
 <template>
+    <HeaderApp />
     <ContainerOut>
         <ContainerIn>
             <section id="auth-login">

@@ -24,6 +24,11 @@ const router = createRouter({
             component: () => import("@/views/teams/Index.vue")
         },
         {
+            path: "/tv",
+            name: "tv_index",
+            component: () => import("@/views/tv/Index.vue")
+        },
+        {
             path: "/auth",
             name: "auth_index",
             redirect: { name: 'auth_login_index' },
