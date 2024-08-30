@@ -20,7 +20,8 @@ app.use(router)
 app.component("ContainerOut", ContainerOut)
 app.component("ContainerIn", ContainerIn)
 
-const storeMatches = useStoreMatches()
-await storeMatches.fetchMatches()
+// const storeMatches = useStoreMatches()
+// await storeMatches.fetchMatches()
+
 
 app.mount("#app")

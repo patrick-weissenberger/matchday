@@ -41,8 +41,12 @@
 
 
 <script lang="ts" setup>
+import useStoreMatches from "@/stores/useStoreMatches"
 import CardLiveMatch from "@/components/cards/CardLiveMatch.vue"
 import ListNextMatch from "@/components/lists/ListNextMatch.vue"
 import ListMyNextMatch from "@/components/lists/ListMyNextMatch.vue"
+
+const storeMatches = useStoreMatches()
+await storeMatches.fetchMatches()
 
 </script>

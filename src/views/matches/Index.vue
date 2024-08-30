@@ -34,6 +34,10 @@
 
 
 <script lang="ts" setup>
+import useStoreMatches from "@/stores/useStoreMatches"
 import TabsMatches from "@/components/tabs/TabsMatches.vue"
+
+const storeMatches = useStoreMatches()
+await storeMatches.fetchMatches()
 
 </script>

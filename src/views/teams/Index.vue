@@ -34,6 +34,10 @@
 
 
 <script lang="ts" setup>
+import useStoreMatches from "@/stores/useStoreMatches"
 import ListAllTeams from "@/components/lists/ListAllTeams.vue"
+
+const storeMatches = useStoreMatches()
+await storeMatches.fetchMatches()
 
 </script>
