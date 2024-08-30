@@ -63,12 +63,12 @@
     /* conditional styles */
 
     li.item-list-all-teams.is-favorite {
-        color: var(--brand-red-secondary);
-        background-color: var(--brand-red-primary);
+        color: var(--brand-blue-secondary);
+        background-color: var(--brand-blue-primary);
     }
 
     li.item-list-all-teams.is-favorite svg {
-        stroke: var(--brand-red-secondary);
+        stroke: var(--brand-blue-secondary);
         stroke-width: 0.2rem;
     }
 

@@ -5,12 +5,15 @@ import sortMatches from "@/utils/sortMatches"
 import type { Match } from "@/databases/supabase/types/supabase.single.types"
 import type { Ref } from "vue"
 import type { RealtimeChannel } from "@supabase/supabase-js"
+import useStoreTeams from "@/stores/useStoreTeams"
 
 
 
 
 
 const useStoreMatches = defineStore("useStoreMatches", () => {
+
+    const storeTeams = useStoreTeams()
 
     const matches: Ref<Match[]> = ref([])
 
@@ -72,6 +75,22 @@ const useStoreMatches = defineStore("useStoreMatches", () => {
         }
     })
 
+    const myNextMatches = computed((): Match[] => {
+        let matches: Match[] = []
+
+        nextMatches.value.forEach((match: Match) => {
+            if(match.team_home_name.toLowerCase() == storeTeams.favoriteTeam.toLowerCase()) {
+                match.id !== currentMatch.value.id ? matches.push(match) : matches
+            } else if(match.team_away_name.toLowerCase() == storeTeams.favoriteTeam.toLowerCase()) {
+                match.id !== currentMatch.value.id ? matches.push(match) : matches
+            } else {
+                return matches
+            }
+        })
+
+        return matches
+    })
+
     const realtimeMatches: RealtimeChannel = supabase.channel("realtimeMatches")
     .on<Match>("postgres_changes", {
         event: "*", schema: "public", table: "matches"
@@ -101,7 +120,8 @@ const useStoreMatches = defineStore("useStoreMatches", () => {
         nextMatches,
         pastMatches,
         currentMatch,
-        nextMatch
+        nextMatch,
+        myNextMatches
     }
 
 })
