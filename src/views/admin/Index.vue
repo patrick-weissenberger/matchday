@@ -35,11 +35,7 @@
 
 
 <script lang="ts" setup>
-import useStoreMatches from "@/stores/useStoreMatches"
 import CardLiveMatch from "@/components/cards/CardLiveMatch.vue"
 import Manager from "@/components/admin/Manager.vue"
-
-const storeMatches = useStoreMatches()
-await storeMatches.fetchMatches()
 
 </script>

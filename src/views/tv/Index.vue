@@ -158,7 +158,6 @@ import type { HMSasString } from "@/utils/timeUtils"
 import { computed } from "vue"
 
 const storeMatches = useStoreMatches()
-await storeMatches.fetchMatches()
 
 const isLive = computed((): Boolean => {
     return storeMatches.currentMatch.is_live ? true : false
