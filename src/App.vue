@@ -1,4 +1,5 @@
 <template>
+    <RouterView />
     <Suspense>
         <template #default>
             <RouterView />
