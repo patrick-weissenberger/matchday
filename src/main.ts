@@ -18,12 +18,7 @@ const app = createApp({
     extends: App,
     async beforeCreate() {
         const storeMatches = useStoreMatches()
-        if(storeMatches.matches.length > 0) {
-            console.log("Not fetched!", storeMatches.matches)
-        } else {
-            await storeMatches.fetchMatches()
-            console.log("Fetched!", storeMatches.matches)
-        }
+        await storeMatches.fetchMatches()
     },
 })
 
