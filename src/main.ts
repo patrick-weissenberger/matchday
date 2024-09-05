@@ -16,9 +16,10 @@ const pinia = createPinia()
 
 const app = createApp({
     extends: App,
-    beforeCreate() {
+    async beforeCreate() {
         const storeMatches = useStoreMatches()
-        storeMatches.fetchMatches()
+        await storeMatches.fetchMatches()
+        console.log(storeMatches.matches)
     },
 })
 
