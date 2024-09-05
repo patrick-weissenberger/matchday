@@ -1,13 +1,12 @@
 <template>
-    <RouterView />
-    <!-- <Suspense>
+    <Suspense>
         <template #default>
             <RouterView />
         </template>
         <template #fallback>
             Loading...
         </template>
-    </Suspense> -->
+    </Suspense>
 </template>
 
 
