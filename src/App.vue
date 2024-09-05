@@ -34,7 +34,11 @@
 
 
 <script lang="ts" setup>
+import useStoreMatches from "@/stores/useStoreMatches"
 import { useTitle } from "@vueuse/core"
+
+const storeMatches = useStoreMatches()
+await storeMatches.fetchMatches()
 
 const pageTitle = useTitle()
 pageTitle.value = "Matchday"

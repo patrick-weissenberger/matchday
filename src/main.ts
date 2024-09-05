@@ -12,16 +12,8 @@ import "@/assets/css/main.css"
 
 
 
+const app = createApp(App)
 const pinia = createPinia()
-
-const app = createApp({
-    extends: App,
-    async beforeCreate() {
-        const storeMatches = useStoreMatches()
-        await storeMatches.fetchMatches()
-        console.log(storeMatches.matches)
-    },
-})
 
 app.use(pinia)
 app.use(router)
